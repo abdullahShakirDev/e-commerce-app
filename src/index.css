@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer components {
+  body {
+    background: #ffffff;
+  }
+}
+
 @theme {
   --color-primary: #ffffff;
   --color-primary1: #363738;
