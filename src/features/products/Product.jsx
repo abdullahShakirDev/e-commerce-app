@@ -6,9 +6,9 @@ function Product({ item }) {
     <li className="relative bg-gray-100 rounded-md shadow-sm p-4 group hover:shadow-lg transition-shadow">
       <div className="relative flex items-center justify-center">
         <img
-          src="/signup-logo.png"
+          src={item.image}
           alt={item.name}
-          className="h-40 object-contain"
+          className="h-40 w-40 object-contain"
         />
 
         <div className="absolute top-2 right-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all">
