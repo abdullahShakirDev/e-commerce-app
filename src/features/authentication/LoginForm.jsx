@@ -72,7 +72,7 @@ function LoginForm() {
 
               <p className="text-center text-sm text-secondary2">
                 <NavLink
-                  to="/login"
+                  to="/signup"
                   className="hover:underline hover:text-red-600 font-medium cursor-pointer transition-all"
                 >
                   Do not have account?
