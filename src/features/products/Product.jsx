@@ -6,7 +6,7 @@ function Product({ item }) {
     <li className="relative bg-gray-100 rounded-md shadow-sm p-4 group hover:shadow-lg transition-shadow">
       <div className="relative flex items-center justify-center">
         <img
-          src="/public/signup-logo.png"
+          src="/signup-logo.png"
           alt={item.name}
           className="h-40 object-contain"
         />

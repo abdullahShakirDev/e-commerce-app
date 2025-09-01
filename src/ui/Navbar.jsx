@@ -32,7 +32,7 @@ function Navbar() {
           </li>
           <li>
             <NavLink
-              to="signup"
+              to="/signup"
               className="active:text-text1/35 hover:underline"
             >
               Sign Up

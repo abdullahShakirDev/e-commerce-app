@@ -9,7 +9,7 @@ function Account() {
           <Link to="#">My Account</Link>
         </li>
         <li>
-          <Link to="login">Login / Register</Link>
+          <Link to="/login">Login / Register</Link>
         </li>
         <li>
           <Link to="cart">Cart</Link>
