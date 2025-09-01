@@ -12,13 +12,13 @@ function Account() {
           <Link to="/login">Login / Register</Link>
         </li>
         <li>
-          <Link to="cart">Cart</Link>
+          <Link to="/cart">Cart</Link>
         </li>
         <li>
           <Link to="#">Wishlist</Link>
         </li>
         <li>
-          <Link to="#">Shop</Link>
+          <Link to="/">Shop</Link>
         </li>
       </ul>
     </div>
