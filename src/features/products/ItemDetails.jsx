@@ -41,7 +41,7 @@ function ItemDetails() {
             <h1 className="text-3xl font-semibold text-text2">{name}</h1>
             <p
               className={`${
-                inStoke ? "text-button1" : "text-secondary2"
+                inStoke ? "text-green-600" : "text-secondary2"
               } font-medium mt-2 text-sm`}
             >
               {inStoke ? "In Stock" : "Sold Out"}
