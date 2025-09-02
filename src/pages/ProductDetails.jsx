@@ -1,5 +1,7 @@
+import ItemDetails from "../features/products/ItemDetails";
+
 function ProductDetails() {
-  return <div>ProductDetails #(ID)</div>;
+  return <ItemDetails />;
 }
 
 export default ProductDetails;

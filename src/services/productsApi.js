@@ -7,3 +7,15 @@ export async function getProducts() {
 
   return data;
 }
+
+export async function getProduct(id) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) throw new error(`Product #${id} not found`);
+
+  return data;
+}
