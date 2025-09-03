@@ -1,4 +1,3 @@
-import { Table } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useCartItems } from "./useCartItems";
 import CartTotalBox from "./CartTotalBox";
@@ -9,14 +8,11 @@ import CartTable from "./CartTable";
 function CartOverview() {
   const navigate = useNavigate();
 
-  const { cartItems, isLoading } = useCartItems();
+  const { cartItems = [], isLoading } = useCartItems();
 
   if (isLoading) return <Spinner />;
 
-  const subTotal = cartItems.reduce(
-    (acc, item) => acc + item.quantity * item.products.price,
-    0
-  );
+  const subTotal = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
 
   return (
     <div className="px-6 py-8 max-w-7xl mx-auto">
@@ -29,7 +25,7 @@ function CartOverview() {
       </div>
 
       <div className="bg-white shadow rounded-lg overflow-hidden">
-        <CartTable cartItems={cartItems} subTotal={subTotal} />
+        <CartTable cartItems={cartItems} />
       </div>
       <div className=" flex items-center justify-between mt-6">
         <button

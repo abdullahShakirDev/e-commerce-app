@@ -2,7 +2,7 @@ import { Table } from "antd";
 import { HiX } from "react-icons/hi";
 import formatCurrency from "../../utils/fromatCurrency";
 
-function CartTable({ cartItems, subTotal }) {
+function CartTable({ cartItems }) {
   const columns = [
     {
       title: "Product",
@@ -39,8 +39,8 @@ function CartTable({ cartItems, subTotal }) {
       title: "Subtotal",
       key: "subtotal",
       align: "center",
-      render: () => (
-        <span className="font-medium">{formatCurrency(subTotal)}</span>
+      render: (_, record) => (
+        <span className="font-medium">{formatCurrency(record.totalPrice)}</span>
       ),
     },
     {
@@ -56,12 +56,13 @@ function CartTable({ cartItems, subTotal }) {
   ];
   return (
     <Table
-      dataSource={cartItems.map((item) => ({
-        key: item.id,
-        name: item.products.name,
-        price: item.products.price,
-        quantity: item.quantity,
-        image: item.products.image, // adjust to your actual field
+      dataSource={cartItems?.map((item) => ({
+        key: item?.id,
+        name: item?.products?.name,
+        price: item?.products?.price,
+        quantity: item?.quantity,
+        image: item?.products?.image, // adjust to your actual field
+        totalPrice: item?.totalPrice,
       }))}
       columns={columns}
       pagination={false}

@@ -3,9 +3,16 @@ import formatCurrency from "../../utils/fromatCurrency";
 import { HiOutlineEye } from "react-icons/hi2";
 import Button from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
+import { useAddToCart } from "../cart/useAddToCart";
 
 function Product({ item }) {
   const navigate = useNavigate();
+  const { addToCart, isPending } = useAddToCart();
+
+  function handleAddToCart() {
+    addToCart({ productId: item.id, quantity: 1, productPrice: item.price });
+  }
+
   return (
     <li className="relative bg-gray-100 rounded-md shadow-sm p-4 group hover:shadow-lg transition-shadow">
       <div className="relative flex items-center justify-center">
@@ -35,7 +42,9 @@ function Product({ item }) {
         <p className="text-secondary2 text-sm font-bold py-1">
           {formatCurrency(item.price)}
         </p>
-        <Button type="small">Add to Cart</Button>
+        <Button type="small" onClick={handleAddToCart} disabled={isPending}>
+          Add to Cart
+        </Button>
       </div>
     </li>
   );
