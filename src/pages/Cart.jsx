@@ -1,5 +1,7 @@
+import CartOverview from "../features/cart/CartOverview";
+
 function Cart() {
-  return <div>Cart page</div>;
+  return <CartOverview />;
 }
 
 export default Cart;

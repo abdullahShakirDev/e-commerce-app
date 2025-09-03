@@ -18,7 +18,7 @@ function ItemDetails() {
   return (
     <div className="px-4 py-6">
       <div className="text-sm mb-4">
-        <Link to="/" className="text-text2/40 hover:text-text2">
+        <Link to="/" className="text-text2/40 hover:text-text2 hover:underline">
           Home
         </Link>
         <span className="mx-1">/</span>

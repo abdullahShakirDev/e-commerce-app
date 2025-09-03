@@ -13,7 +13,7 @@ const categories = [
 
 function Categories() {
   return (
-    <div className="my-10 max-w-5xl mx-auto border-b border-text2/30 pb-6">
+    <div className="my-10 max-w-6xl mx-auto border-b border-text2/30 pb-6">
       <div className="flex items-center gap-4">
         <p className="w-3 h-8 bg-secondary2 rounded-sm"></p>
         <span className="text-sm font-bold text-secondary2 bg-BG">

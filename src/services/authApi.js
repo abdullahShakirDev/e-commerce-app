@@ -82,5 +82,3 @@ export async function updateCurrentUser({ fullName, password, avatar }) {
 
   return updatedUser;
 }
-
-//https://ipevlcizuyoaofhkgyab.supabase.co/storage/v1/object/public/avatars/default-user.jpg
