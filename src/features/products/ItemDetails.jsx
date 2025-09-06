@@ -1,19 +1,27 @@
 import { Link } from "react-router-dom";
 import { HiMiniArrowPath, HiOutlineHeart } from "react-icons/hi2";
 import { TbTruckDelivery } from "react-icons/tb";
+import { useAddToCart } from "../cart/useAddToCart";
 import { useProduct } from "./useProduct";
 import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
 import formatCurrency from "../../utils/fromatCurrency";
+import { useState } from "react";
 
 function ItemDetails() {
   const { product, isLoading } = useProduct();
+  const { addToCart } = useAddToCart();
+  const [quantityValue, setQuantityValue] = useState(1);
 
   if (isLoading) return <Spinner />;
 
-  const { name, price, category, description, stock, image } = product;
+  const { id, name, price, category, description, stock, image } = product;
 
   const inStoke = stock > 0;
+
+  function handleAddToCart() {
+    addToCart({ productId: id, quantity: quantityValue, productPrice: price });
+  }
 
   return (
     <div className="px-4 py-6">
@@ -56,21 +64,23 @@ function ItemDetails() {
 
           <div className="flex items-center gap-3">
             <div className="flex items-center border rounded-md overflow-hidden">
-              <button className="w-10 h-11 flex items-center justify-center border-r border-text2 hover:bg-hoverButton hover:text-BG">
-                -
-              </button>
               <input
                 type="number"
                 className="w-20 h-11 text-center focus:outline-none"
-                defaultValue={1}
+                defaultValue={quantityValue}
                 min={1}
+                onChange={(e) => setQuantityValue(Number(e.target.value))}
+                disabled={!inStoke}
               />
-              <button className="w-10 h-11 flex items-center justify-center border-l border-text2 hover:bg-hoverButton hover:text-BG">
-                +
-              </button>
             </div>
 
-            <Button type="primary">Add to cart</Button>
+            <Button
+              type="primary"
+              onClick={handleAddToCart}
+              disabled={!inStoke}
+            >
+              Add to cart
+            </Button>
 
             <button className="ml-2 p-2 cursor-pointer border border-text2 hover:bg-gray-100">
               <HiOutlineHeart size={24} />

@@ -1,8 +1,11 @@
 import supabase from "./supabase";
 
-export async function getProducts() {
-  let { data, error } = await supabase.from("products").select("*");
+export async function getProducts({ filter }) {
+  let query = supabase.from("products").select("*");
 
+  if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
+
+  const { data, error } = await query;
   if (error) throw new error("Products could not be fetched");
 
   return data;

@@ -4,7 +4,8 @@ export async function getCartItems(userId) {
   let { data, error } = await supabase
     .from("cartItems")
     .select("*, products(name,price,image)")
-    .eq("userId", userId);
+    .eq("userId", userId)
+    .order("created_at", { ascending: true });
 
   if (error) throw new Error(error.message);
 
@@ -71,4 +72,22 @@ export async function getCountCart(userId) {
 
   if (error) throw new Error(error.message);
   return count;
+}
+
+export async function updateCartItemQuantity({
+  cartItemId,
+  newQuantity,
+  productPrice,
+}) {
+  const totalPrice = newQuantity * productPrice;
+
+  const { data, error } = await supabase
+    .from("cartItems")
+    .update({ quantity: newQuantity, totalPrice })
+    .eq("id", cartItemId)
+    .select()
+    .single();
+
+  if (error) throw new Error(error.message);
+  return data;
 }

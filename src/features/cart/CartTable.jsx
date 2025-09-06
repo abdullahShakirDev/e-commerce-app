@@ -1,10 +1,12 @@
-import { Table } from "antd";
+import { InputNumber, Table } from "antd";
 import { HiX } from "react-icons/hi";
 import formatCurrency from "../../utils/fromatCurrency";
 import { useDeleteItemCart } from "./useDeleteItemCart";
+import { useUpdateCartItem } from "./useUpdateItemQuantity";
 
 function CartTable({ cartItems }) {
   const { deleteItemCart } = useDeleteItemCart();
+  const { updateCartItem } = useUpdateCartItem();
 
   const columns = [
     {
@@ -36,14 +38,33 @@ function CartTable({ cartItems }) {
       dataIndex: "quantity",
       key: "quantity",
       align: "center",
-      render: (quantity) => <span className="font-medium">{quantity}</span>, // you can replace with input later
+      render: (quantity, record) => {
+        return (
+          <InputNumber
+            type="number"
+            className="font-medium"
+            min={1}
+            value={quantity}
+            onChange={(newQuantity) => {
+              updateCartItem({
+                cartItemId: record.key,
+                newQuantity,
+                productPrice: record.price,
+                userId: record.userId, // important for invalidateQueries
+              });
+            }}
+          />
+        );
+      },
     },
     {
       title: "Subtotal",
       key: "subtotal",
       align: "center",
       render: (_, record) => (
-        <span className="font-medium">{formatCurrency(record.totalPrice)}</span>
+        <span className="font-medium w-40">
+          {formatCurrency(record.totalPrice)}
+        </span>
       ),
     },
     {
