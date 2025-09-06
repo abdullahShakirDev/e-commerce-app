@@ -39,22 +39,36 @@ export async function addToCart({
       .update({ quantity: newQuantity, totalPrice: newQuantity * productPrice })
       .eq("id", existingItem.id);
 
-    if (error) throw error;
+    if (error) throw new Error(error.message);
     return data;
   } else {
     // Insert new row
-    const { data, error } = await supabase
-      .from("cartItems")
-      .insert([
-        {
-          userId,
-          productId,
-          quantity: newQuantity,
-          totalPrice: newQuantity * productPrice,
-        },
-      ]);
+    const { data, error } = await supabase.from("cartItems").insert([
+      {
+        userId,
+        productId,
+        quantity: newQuantity,
+        totalPrice: newQuantity * productPrice,
+      },
+    ]);
 
-    if (error) throw error;
+    if (error) throw new Error(error.message);
     return data;
   }
+}
+
+export async function deleteItemCart(id) {
+  const { error } = await supabase.from("cartItems").delete().eq("id", id);
+
+  if (error) throw new Error(error.message);
+}
+
+export async function getCountCart(userId) {
+  const { count, error } = await supabase
+    .from("cartItems")
+    .select("*", { count: "exact", head: true })
+    .eq("userId", userId);
+
+  if (error) throw new Error(error.message);
+  return count;
 }

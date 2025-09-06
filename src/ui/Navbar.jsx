@@ -1,13 +1,9 @@
-import {
-  HiOutlineHeart,
-  HiOutlineMagnifyingGlass,
-  HiOutlineShoppingCart,
-} from "react-icons/hi2";
+import { HiOutlineHeart, HiOutlineMagnifyingGlass } from "react-icons/hi2";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import CartIcon from "../features/cart/CartIcon";
 
 function Navbar() {
-  const navigate = useNavigate();
   return (
     <nav>
       <div className="flex justify-start items-center pt-8 pb-3 px-3 border-b border-button/30">
@@ -54,12 +50,13 @@ function Navbar() {
         <button className="ml-3 cursor-pointer p-1 rounded-sm hover:bg-text1/10">
           <HiOutlineHeart size={25} />
         </button>
-        <button
+        {/* <button
           onClick={() => navigate("/cart")}
           className="mx-3 cursor-pointer p-1 rounded-sm hover:bg-text1/10"
         >
           <HiOutlineShoppingCart size={25} />
-        </button>
+        </button> */}
+        <CartIcon />
       </div>
     </nav>
   );

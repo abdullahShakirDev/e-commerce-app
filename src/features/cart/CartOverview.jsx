@@ -4,6 +4,7 @@ import CartTotalBox from "./CartTotalBox";
 import CoponBox from "./CoponBox";
 import Spinner from "../../ui/Spinner";
 import CartTable from "./CartTable";
+import EmptyCart from "../../ui/EmptyCart";
 
 function CartOverview() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function CartOverview() {
   const { cartItems = [], isLoading } = useCartItems();
 
   if (isLoading) return <Spinner />;
+  if (!cartItems.length) return <EmptyCart />;
 
   const subTotal = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
 
@@ -30,11 +32,11 @@ function CartOverview() {
       <div className=" flex items-center justify-between mt-6">
         <button
           onClick={() => navigate("/")}
-          className="border cursor-pointer font-medium px-6 py-3 text border-text2"
+          className="border cursor-pointer font-medium px-6 py-3 text border-text2 hover:bg-text1/20"
         >
           Return To Shop
         </button>
-        <button className="border cursor-pointer px-6 py-3 font-medium text border-text2">
+        <button className="border cursor-pointer px-6 py-3 font-medium text border-text2 hover:bg-text1/20">
           Update Cart
         </button>
       </div>

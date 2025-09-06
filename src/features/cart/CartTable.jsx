@@ -1,8 +1,11 @@
 import { Table } from "antd";
 import { HiX } from "react-icons/hi";
 import formatCurrency from "../../utils/fromatCurrency";
+import { useDeleteItemCart } from "./useDeleteItemCart";
 
 function CartTable({ cartItems }) {
+  const { deleteItemCart } = useDeleteItemCart();
+
   const columns = [
     {
       title: "Product",
@@ -47,9 +50,9 @@ function CartTable({ cartItems }) {
       title: "Action",
       key: "action",
       align: "center",
-      render: () => (
+      render: (_, record) => (
         <button className="text-secondary2 cursor-pointer hover:text-hoverButton">
-          <HiX size={20} />
+          <HiX size={20} onClick={() => deleteItemCart(record.key)} />
         </button>
       ),
     },
