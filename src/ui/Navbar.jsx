@@ -50,12 +50,6 @@ function Navbar() {
         <button className="ml-3 cursor-pointer p-1 rounded-sm hover:bg-text1/10">
           <HiOutlineHeart size={25} />
         </button>
-        {/* <button
-          onClick={() => navigate("/cart")}
-          className="mx-3 cursor-pointer p-1 rounded-sm hover:bg-text1/10"
-        >
-          <HiOutlineShoppingCart size={25} />
-        </button> */}
         <CartIcon />
       </div>
     </nav>
